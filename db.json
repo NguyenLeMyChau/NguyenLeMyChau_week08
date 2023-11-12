@@ -1,0 +1,179 @@
+
+{
+    
+    "shops":[
+        {
+        "cafeName": "Jewel Box Cafe",
+        "status": false,
+        "minute": "5-10 minutes",
+        "address": "1121 NE 45 St",
+        "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698646510/Week07_Mobie/Image_t3txm6.png",
+        "id": "1"
+        },
+        {
+        "cafeName": "Javasti Cafe",
+        "status": true,
+        "minute": "10-15 minutes",
+        "address": "1145 GE 54 St",
+        "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698646509/Week07_Mobie/Image_1_jzhyni.png",
+        "id": "2"
+        },
+        {
+        "cafeName": "Kitanda Espresso & Acai-U District",
+        "status": false,
+        "minute": "15-20 minutes",
+        "address": "1167 GE 54 St",
+        "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698646509/Week07_Mobie/Image_2_hbk4x3.png",
+        "id": "3"
+        }
+    ],
+
+    "drinks":[
+        {
+            "shopId": 1,
+            "menu":[
+                {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/nh-c-cafe_udzzpt.jpg",
+                    "name": "Milk",
+                    "price": 20,
+                    "id": "1"
+                   },
+                   {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/Image_5_xnyw8e.png",
+                    "name": "Origin",
+                    "price": 68,
+                    "id": "2"
+                   },
+                   {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/Image_246_kn69ek.png",
+                    "name": "Salt",
+                    "price": 5,
+                    "id": "3"
+                   },
+                   {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943808/Week07_Mobie/Image_226_dbglcd.png",
+                    "name": "Catimor",
+                    "price": 10,
+                    "id": "4"
+                   },
+                   {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/espresso-la-gi-nguyen-tac-pha-espresso-dung-chuan-202307120718497350_vfl9ho.jpg",
+                    "name": "Espresso",
+                    "price": 23,
+                    "id": "5"
+                   },
+                   {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/capuchino-la-gi-20230320105423-e_pepbyx.jpg",
+                    "name": "Capuchino",
+                    "price": 20,
+                    "id": "6"
+                   },
+                   {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/Image_249_jaoxrj.png",
+                    "name": "Weasel",
+                    "price": 0,
+                    "id": "7"
+                   },
+                   {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/tinh-chat-ca-phe-Culi_nhfonh.jpg",
+                    "name": "Culi",
+                    "price": 9,
+                    "id": "8"
+                   }
+            ]
+        },
+
+        {
+            "shopId": 2,
+            "menu":[
+                {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/nh-c-cafe_udzzpt.jpg",
+                    "name": "Milk",
+                    "price": 20,
+                    "id": "1"
+                   },
+                   {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/Image_5_xnyw8e.png",
+                    "name": "Origin",
+                    "price": 68,
+                    "id": "2"
+                   },
+                   {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/Image_246_kn69ek.png",
+                    "name": "Salt",
+                    "price": 5,
+                    "id": "3"
+                   },
+                   {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943808/Week07_Mobie/Image_226_dbglcd.png",
+                    "name": "Catimor",
+                    "price": 10,
+                    "id": "4"
+                   },
+                   {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/espresso-la-gi-nguyen-tac-pha-espresso-dung-chuan-202307120718497350_vfl9ho.jpg",
+                    "name": "Espresso",
+                    "price": 23,
+                    "id": "5"
+                   }
+            ]
+        },
+
+        {
+            "shopId": 3,
+            "menu":[
+                   {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/espresso-la-gi-nguyen-tac-pha-espresso-dung-chuan-202307120718497350_vfl9ho.jpg",
+                    "name": "Espresso",
+                    "price": 23,
+                    "id": "1"
+                   },
+                   {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/capuchino-la-gi-20230320105423-e_pepbyx.jpg",
+                    "name": "Capuchino",
+                    "price": 20,
+                    "id": "2"
+                   },
+                   {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/Image_249_jaoxrj.png",
+                    "name": "Weasel",
+                    "price": 0,
+                    "id": "3"
+                   },
+                   {
+                    "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/tinh-chat-ca-phe-Culi_nhfonh.jpg",
+                    "name": "Culi",
+                    "price": 9,
+                    "id": "4"
+                   }
+            ]
+        }
+  
+       ],
+
+       "orders":[
+        {
+         "id": "1",
+         "shopId": "1",
+         "order":[
+            {
+                "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943809/Week07_Mobie/tinh-chat-ca-phe-Culi_nhfonh.jpg",
+                "name": "Culi",
+                "price": 9,
+                "drinkId": "8",
+                "quantity": 2
+            },
+
+            {
+                "imgUrl": "https://res.cloudinary.com/df1iihqft/image/upload/v1698943808/Week07_Mobie/Image_226_dbglcd.png",
+                "name": "Catimor",
+                "price": 10,
+                "drinkId": "4",
+                "quantity": 1
+            }
+         ]
+        }
+       ]
+
+    
+}

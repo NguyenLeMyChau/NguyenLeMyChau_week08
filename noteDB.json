@@ -1,0 +1,33 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "fullname": "Nguyen Thi Van",
+      "username": "vanvan123",
+      "password": "vanvan123"
+    },
+    {
+      "fullName": "Hoang Van An",
+      "userName": "vanan123",
+      "password": "vanan123",
+      "id": 2
+    },
+    {
+      "fullName": "Tran Phuong Uyen",
+      "userName": "uyenuyen1132",
+      "password": "uyenuyen1132",
+      "id": 3
+    }
+  ],
+  "note": [
+    {
+      "userId": 1,
+      "note": [
+        {
+          "content": "Test API",
+          "timeNote": "2023-11-12"
+        }
+      ]
+    }
+  ]
+}
