@@ -4,22 +4,9 @@ import { Button, Pressable, StyleSheet, Text, TouchableOpacity, View, TextInput}
 
 export default function Register() {
 
-  var [data, setData] = useState([]);
-
   var [fullName, setFullName] = useState('');
   var [userName, setUserName] = useState('');
   var [password, setPassword] = useState('');
-
-  // useEffect(() => {
-  //   getAPIUser()
-  // }, [])
-
-  // const getAPIUser = async () => {
-  //   const url = "http://localhost:3000/user";
-  //   let result = await fetch(url);
-  //   result = await result.json();
-  //   setData(result);
-  // }
 
    const saveAPIUser = async() => {
 
@@ -42,14 +29,6 @@ export default function Register() {
       <View style={styles.head}>
         <Text style={{ fontSize: 40, fontWeight: 500, color: '#8353E2' }}>Register</Text>
       </View>
-
-      {
-        data.map((item) =>
-          <View>
-            <Text>{item.fullname}</Text>
-          </View>
-        )
-      }
 
       <View style={styles.mid}>
         <TextInput
