@@ -1,31 +1,41 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { Button, Pressable, StyleSheet, Text, TouchableOpacity, View, TextInput} from 'react-native';
+import { Button, Pressable, StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
-export default function Register() {
+export default function RegisterScreen({ navigation }) {
 
-  var [fullName, setFullName] = useState('');
-  var [userName, setUserName] = useState('');
+  var [fullname, setFullName] = useState('');
+  var [username, setUserName] = useState('');
   var [password, setPassword] = useState('');
 
-   const saveAPIUser = async() => {
+  const saveAPIUser = async () => {
 
     const url = "http://localhost:3000/user";
     let result = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({fullName, userName, password})
+      body: JSON.stringify({ fullname, username, password })
     });
     result = await result.json();
     if (result) {
       alert("Data is added");
-    }else{
+    } else {
       alert("Error");
     }
   }
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        style={{ width: 165, flexDirection: 'row', alignItems: 'center', top: 30, left: 22 }}
+        onPress={() => {
+          navigation.navigate('LoginScreen')
+        }}>
+        <Ionicons name='arrow-back' size={30} />
+        <Text style={{ fontSize: 20, top: '-3px' }}>Quay lại Login</Text>
+      </TouchableOpacity>
+
       <View style={styles.head}>
         <Text style={{ fontSize: 40, fontWeight: 500, color: '#8353E2' }}>Register</Text>
       </View>
@@ -34,14 +44,14 @@ export default function Register() {
         <TextInput
           style={styles.input}
           placeholder="Full name"
-          value={fullName}
+          value={fullname}
           onChangeText={(text) => setFullName(text)}
         />
 
         <TextInput
           style={styles.input}
           placeholder="Username"
-          value={userName}
+          value={username}
           onChangeText={(text) => setUserName(text)}
         />
 

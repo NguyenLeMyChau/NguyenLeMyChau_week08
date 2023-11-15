@@ -1,38 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { Button, Pressable, StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
 
-export default function Login() {
-
-    const [data, setData] = useState([])
-
-    var [userName, setUserName] = useState('');
+export default function LoginScreen({ navigation }) {
+    var [username, setUserName] = useState('');
     var [password, setPassword] = useState('');
 
-    useEffect(() => {
-        getAPIUser()
-    }, [])
-
     const getAPIUser = async () => {
-        const url = "http://localhost:3000/user";
-        let result = await fetch(url);
-        result = await result.json();
-        setData(result);
-    }
-
-    const handleLogin = (e) => {
-        e.preventDefault();
-        const user = data.find((user) => user.username === userName && user.password === password);
-        if (user) {
-            alert('Đăng nhập thành công')
-            console.log(data)
-            console.log(userName, password)
-        }
-        else {
-            alert('Đăng nhập thất bại. Vui lòng thử lại')
-            console.log(data)
-            console.log(userName, password)
-        }
+        const url = "http://localhost:3000/user?username=" + username;
+        fetch(url)
+            .then((response) => response.json())
+            .then((json) => {
+                json.forEach(element => {
+                    if (element.password === password) {
+                        alert("Login success");
+                        navigation.navigate('NoteScreen', {userId: element.id})
+                    } else {
+                        alert("Login fail");
+                    }
+                });
+            });
 
     }
 
@@ -48,7 +34,7 @@ export default function Login() {
                 <TextInput
                     style={styles.input}
                     placeholder="Username"
-                    value={userName}
+                    value={username}
                     onChangeText={(text) => setUserName(text)}
                 />
 
@@ -60,10 +46,17 @@ export default function Login() {
                     onChangeText={(text) => setPassword(text)}
                 />
 
+                <TouchableOpacity
+                    style={{ color: 'blue', fontSize: 18, top: 15, left: 115, fontWeight: 700 }}
+                    onPress={() => {
+                        navigation.navigate('RegisterScreen')
+                    }}
+                >Register</TouchableOpacity>
+
             </View>
 
             <View style={styles.footer}>
-                <TouchableOpacity style={styles.btnRegister} onPress={handleLogin}>
+                <TouchableOpacity style={styles.btnRegister} onPress={getAPIUser}>
                     <Text style={{ fontSize: 25, fontWeight: 500, color: '#FFFFFF' }}>LOGIN</Text>
                 </TouchableOpacity>
             </View>
@@ -116,6 +109,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,
-        marginTop:'-70px'
+        marginTop: '-70px'
     }
 });

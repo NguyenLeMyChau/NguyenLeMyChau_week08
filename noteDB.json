@@ -7,27 +7,56 @@
       "id": 1
     },
     {
-      "fullName": "Hoang Van An",
-      "userName": "vanan123",
+      "fullname": "Hoang Van An",
+      "username": "vanan123",
       "password": "vanan123",
       "id": 2
     },
     {
-      "fullName": "Tran Phuong Uyen",
-      "userName": "uyenuyen1132",
+      "fullname": "Tran Phuong Uyen",
+      "username": "uyenuyen1132",
       "password": "uyenuyen1132",
       "id": 3
+    },
+    {
+      "fullname": "Nguyen Hoang Chau",
+      "username": "chauchau123",
+      "password": "chauchau123",
+      "id": 4
     }
   ],
   "note": [
     {
       "userId": 1,
-      "note": [
+      "noteArr": [
         {
           "content": "Test API",
           "timeNote": "2023-11-12"
+        },
+        {
+          "content": "Create Note",
+          "timeNote": "2023-11-12"
+        },
+        {
+          "content": "Create API Test Test Test Test Test Test Test Test",
+          "timeNote": "2023-11-12"
         }
-      ]
+      ],
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "noteArr": [
+        {
+          "content": "Test API 2",
+          "timeNote": "2023-11-12"
+        },
+        {
+          "content": "Create Note 2",
+          "timeNote": "2023-11-12"
+        }
+      ],
+      "id": 2
     }
   ]
 }
