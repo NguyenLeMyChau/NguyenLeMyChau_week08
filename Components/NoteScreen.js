@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, Modal } from 'react-native';
+
+
 
 export default function NoteScreen({ navigation, route }) {
     const userId = route.params;
@@ -7,6 +9,7 @@ export default function NoteScreen({ navigation, route }) {
     var [data, setData] = useState([]);
 
     var [dataUser, setDataUser] = useState([]);
+
 
     useEffect(() => {
         getAPINote(),
@@ -33,33 +36,39 @@ export default function NoteScreen({ navigation, route }) {
 
     }
 
-
+    const deleteAPINote = async (id) => {
+        const url = "http://localhost:3000/note/" + id;
+        let result = await fetch(url, {
+            method: "DELETE",
+        });
+        result = await result.json();
+        if (result) {
+            alert("Data delete success");
+            getAPINote()
+        } else {
+            alert("Error");
+        }
+    }
     return (
         <View style={styles.container}>
             <View style={styles.head}>
                 <Text style={{ fontSize: 25, fontWeight: 500, color: '#8353E2' }}>HELLO
-                    {dataUser.map((element, index) =><View key={index}><Text> {element.fullname}</Text></View>)}
-
+                    {dataUser.map((element, index) => <View key={index}><Text> {element.fullname}</Text></View>)}
                 </Text>
             </View>
 
             <View style={styles.mid}>
                 {
                     data.map((item, index) =>
-                        <View key={index} >
-                            {
-                                item.noteArr.map((dataNote, index1) =>
-                                    <View style={styles.listNote} key={index1}>
-                                        <View style={{ flexDirection: 'column' }}>
-                                            <Text style={{ width: 200, fontSize: 18, fontWeight: 400 }}>{dataNote.content}</Text>
-                                            <Text style={{ width: 200, fontSize: 18, color: 'red', fontWeight: 620 }}>{dataNote.timeNote}</Text>
-                                        </View>
+                        <View key={index} style={styles.listNote}>
 
-                                        <TouchableOpacity style={{ ...styles.btnEdit, backgroundColor: 'green' }}><Text style={{ fontSize: 18, color: 'white' }}>Edit</Text></TouchableOpacity>
-                                        <TouchableOpacity style={{ ...styles.btnEdit, backgroundColor: 'red' }}><Text style={{ fontSize: 18, color: 'white' }}>Delete</Text></TouchableOpacity>
-                                    </View>
-                                )
-                            }
+                            <View style={{ flexDirection: 'column' }}>
+                                <Text style={{ width: 200, fontSize: 18, fontWeight: 400 }}>{item.content}</Text>
+                                <Text style={{ width: 200, fontSize: 18, color: 'red', fontWeight: 620 }}>{item.timeNote}</Text>
+                            </View>
+
+                            <TouchableOpacity style={{ ...styles.btnEdit, backgroundColor: 'green' }}><Text style={{ fontSize: 18, color: 'white' }}>Edit</Text></TouchableOpacity>
+                            <TouchableOpacity onPress={() => deleteAPINote(item.id)} style={{ ...styles.btnEdit, backgroundColor: 'red' }}><Text style={{ fontSize: 18, color: 'white' }}>Delete</Text></TouchableOpacity>
 
                         </View>
                     )
@@ -68,13 +77,21 @@ export default function NoteScreen({ navigation, route }) {
             </View>
 
             <View style={styles.footer}>
-                <TouchableOpacity style={styles.btnRegister}>
+                <TouchableOpacity style={styles.btnRegister}
+                    onPress={() => {
+                        navigation.navigate('AddNoteScreen', { userId: userId.userId })
+
+                    }}
+                >
                     <Text style={{ fontSize: 25, fontWeight: 500, color: '#FFFFFF' }}>ADD NOTE</Text>
                 </TouchableOpacity>
             </View>
+
         </View>
     );
-}
+
+};
+
 
 const styles = StyleSheet.create({
     container: {

@@ -28,35 +28,51 @@
   "note": [
     {
       "userId": 1,
-      "noteArr": [
-        {
-          "content": "Test API",
-          "timeNote": "2023-11-12"
-        },
-        {
-          "content": "Create Note",
-          "timeNote": "2023-11-12"
-        },
-        {
-          "content": "Create API Test Test Test Test Test Test Test Test",
-          "timeNote": "2023-11-12"
-        }
-      ],
+      "content": "Test API",
+      "timeNote": "2023-11-12",
       "id": 1
     },
     {
+      "userId": 1,
+      "content": "Test test test test test test test API",
+      "timeNote": "2023-11-12",
+      "id": 3
+    },
+    {
       "userId": 2,
-      "noteArr": [
-        {
-          "content": "Test API 2",
-          "timeNote": "2023-11-12"
-        },
-        {
-          "content": "Create Note 2",
-          "timeNote": "2023-11-12"
-        }
-      ],
-      "id": 2
+      "content": "Test API 2",
+      "timeNote": "2023-11-12",
+      "id": 4
+    },
+    {
+      "userId": 2,
+      "content": "Content Test",
+      "timeNote": "16-11-2023",
+      "id": 6
+    },
+    {
+      "userId": 4,
+      "content": "Test ChauChau",
+      "timeNote": "16-11-2023",
+      "id": 7
+    },
+    {
+      "userId": 4,
+      "content": "Test ChauChau2",
+      "timeNote": "16-11-2023",
+      "id": 8
+    },
+    {
+      "userId": 4,
+      "content": "Test ChauChau3",
+      "date": "16-11-2023",
+      "id": 9
+    },
+    {
+      "userId": 2,
+      "content": "Test Delete",
+      "timeNote": "16-11-2023",
+      "id": 10
     }
   ]
 }

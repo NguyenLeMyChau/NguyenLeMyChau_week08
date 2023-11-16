@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import LoginScreen from '../Components/LoginScreen';
 import RegisterScreen from '../Components/RegisterScreen';
 import NoteScreen from '../Components/NoteScreen';
+import AddNoteScreen from '../Components/AddNoteScreen';
 
 
 export default function StackNavigator() {
@@ -13,6 +14,8 @@ export default function StackNavigator() {
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
         <Stack.Screen name="NoteScreen" component={NoteScreen} />
+        <Stack.Screen name="AddNoteScreen" component={AddNoteScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
 
