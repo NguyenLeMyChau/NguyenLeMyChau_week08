@@ -11,16 +11,23 @@ export default function NoteScreen({ navigation, route }) {
 
     var [dataUser, setDataUser] = useState([]);
 
-    var [show, setShow] = useState(false);
+    var [showAdd, setShowAdd] = useState(false);
+
+    var [showEdit, setShowEdit] = useState(false);
 
     var [content, setContent] = useState('');
+
+    var [contentEdit, setContentEdit] = useState('');
+
+
+    var [countId, setCountId] = useState(0);
+
     var timeNote = moment(Date(new Date())).format('DD-MM-YYYY');
 
     useEffect(() => {
         getAPINote(),
             getAPIUser()
     }, []);
-
 
 
 
@@ -70,11 +77,41 @@ export default function NoteScreen({ navigation, route }) {
         result = await result.json();
         if (result) {
             alert("Data delete success");
-            getAPINote()
+            getAPINote();
         } else {
             alert("Error");
         }
     }
+
+    const getAPINoteFromId = async (id) => {
+        const url = "http://localhost:3000/note?id=" + id;
+        fetch(url)
+            .then((response) => response.json())
+            .then((json) => {
+                json.forEach(element => {
+                    setContentEdit(element.content)
+                });
+            });
+
+    }
+
+    const putAPINote = async (data) => {
+
+        const url = "http://localhost:3000/note";
+        let result = await fetch(`${url}/${data}`, {
+            method: 'PATCH',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ content: contentEdit, timeNote })
+        });
+        result = await result.json();
+        if (result) {
+            getAPINote()
+            alert("Data update success");
+        } else {
+            alert("Error");
+        }
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.head}>
@@ -93,9 +130,12 @@ export default function NoteScreen({ navigation, route }) {
                                 <Text style={{ width: 200, fontSize: 18, color: 'red', fontWeight: 620 }}>{item.timeNote}</Text>
                             </View>
 
-                            <TouchableOpacity style={{ ...styles.btnEdit, backgroundColor: 'green' }}><Text style={{ fontSize: 18, color: 'white' }}>Edit</Text></TouchableOpacity>
+                            <TouchableOpacity onPress={() => {
+                                setShowEdit(true);
+                                getAPINoteFromId(item.id);
+                                setCountId(item.id);
+                            }} style={{ ...styles.btnEdit, backgroundColor: 'green' }}><Text style={{ fontSize: 18, color: 'white' }}>Edit</Text></TouchableOpacity>
                             <TouchableOpacity onPress={() => deleteAPINote(item.id)} style={{ ...styles.btnEdit, backgroundColor: 'red' }}><Text style={{ fontSize: 18, color: 'white' }}>Delete</Text></TouchableOpacity>
-
                         </View>
                     )
                 }
@@ -106,7 +146,7 @@ export default function NoteScreen({ navigation, route }) {
                 <TouchableOpacity style={styles.btnAddNote}
                     onPress={() => {
                         // navigation.navigate('AddNoteScreen', { userId: userId.userId })
-                        setShow(true);
+                        setShowAdd(true);
 
                     }}
                 >
@@ -115,13 +155,13 @@ export default function NoteScreen({ navigation, route }) {
             </View>
 
 
-            <Modal visible={show} transparent={true}>
+            <Modal visible={showAdd} transparent={true}>
                 <View style={{ width: '80%', height: 220, justifyContent: 'center', alignItems: 'center', marginTop: 200, marginLeft: 40, border: '1px solid #C4C4C4', backgroundColor: 'white' }}>
-                    <View style={{ width: '100%', height: 30, marginTop: '-20px' }}>
+                    <View style={{ width: '100%', height: 50, paddingTop: '20px' }}>
                         <Text style={{ fontSize: 25, fontWeight: 500, color: '#8353E2', left: 30 }}>Add Note</Text>
                     </View>
 
-                    <View style={{ width: '100%', height: 50, marginTop: 15 }}>
+                    <View style={{ width: '100%', height: 100, marginTop: 20 }}>
                         <TextInput
                             style={styles.input}
                             placeholder="Content"
@@ -131,13 +171,13 @@ export default function NoteScreen({ navigation, route }) {
 
                     </View>
 
-                    <View style={{ width: '100%', height: 50, marginTop: 15, flexDirection: 'row' }}>
+                    <View style={{ width: '100%', height: 50, marginTop: '-30px', flexDirection: 'row' }}>
                         <TouchableOpacity style={styles.btnRegister} onPress={saveAPINote}>
                             <Text style={{ fontSize: 25, fontWeight: 500, color: '#FFFFFF' }}>Send</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.btnRegister} onPress={() => {
-                            setShow(false);
+                            setShowAdd(false);
                         }}>
                             <Text style={{ fontSize: 25, fontWeight: 500, color: '#FFFFFF' }}>Close</Text>
                         </TouchableOpacity>
@@ -146,10 +186,47 @@ export default function NoteScreen({ navigation, route }) {
                 </View>
             </Modal>
 
+
+            <Modal visible={showEdit} transparent={true}>
+                <View style={{ width: '80%', height: 220, justifyContent: 'center', alignItems: 'center', marginTop: 200, marginLeft: 40, border: '1px solid #C4C4C4', backgroundColor: 'white' }}>
+                    <View style={{ width: '100%', height: 50, paddingTop: '20px' }}>
+                        <Text style={{ fontSize: 25, fontWeight: 500, color: '#8353E2', left: 30 }}>Edit Note</Text>
+                    </View>
+
+                    <View style={{ width: '100%', height: 100, marginTop: 20 }}>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Input edit note"
+                            value={contentEdit}
+                            onChangeText={(text) => setContentEdit(text)}
+                        />
+
+                    </View>
+
+                    <View style={{ width: '100%', height: 50, marginTop: '-30px', flexDirection: 'row' }}>
+                        <TouchableOpacity style={styles.btnRegister} onPress={() => {
+                            putAPINote(countId);
+                        }}>
+                            <Text style={{ fontSize: 25, fontWeight: 500, color: '#FFFFFF' }}>Edit</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.btnRegister} onPress={() => {
+                            setShowEdit(false);
+                        }}>
+                            <Text style={{ fontSize: 25, fontWeight: 500, color: '#FFFFFF' }}>Close</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                </View>
+            </Modal>
+
+
         </View>
     );
 
 };
+
+
 
 
 const styles = StyleSheet.create({
@@ -167,13 +244,16 @@ const styles = StyleSheet.create({
 
     mid: {
         width: '100%',
-        height: 400,
+        height: 'auto',
+        paddingBottom: 80
     },
 
     footer: {
         width: '100%',
         height: 100,
-        alignItems: 'center'
+        alignItems: 'center',
+        position: 'fixed',
+        bottom: 0,
     },
 
     input: {
@@ -184,6 +264,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         border: '1px #9095A0 solid',
         marginLeft: 20,
+        margin: 10,
 
     },
 
